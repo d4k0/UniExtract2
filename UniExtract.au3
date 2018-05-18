@@ -89,19 +89,6 @@ Const $STATUS_SYNTAX = "syntax", $STATUS_FILEINFO = "fileinfo", $STATUS_UNKNOWNE
 	  $STATUS_NOTSUPPORTED = "notsupported", $STATUS_MISSINGEXE = "missingexe", $STATUS_TIMEOUT = "timeout", $STATUS_PASSWORD = "password", _
 	  $STATUS_MISSINGDEF = "missingdef", $STATUS_MOVEFAILED = "movefailed", $STATUS_FAILED = "failed", $STATUS_SUCCESS = "success", _
 	  $STATUS_SILENT = "silent"
-Const $TYPE_7Z = "7z", $TYPE_ACE = "ace", $TYPE_AI = "ai", $TYPE_ALZ = "alz", $TYPE_ARC_CONV = "arc_conv", $TYPE_AUDIO = "audio", _
-	  $TYPE_BCM = "bcm", $TYPE_BOOTIMG = "bootimg", $TYPE_CAB = "cab", $TYPE_CHM = "chm", $TYPE_CI = "ci", $TYPE_CRAGE = "crage", _
-	  $TYPE_CTAR = "ctar", $TYPE_DGCA = "dgca", $TYPE_DAA = "daa", $TYPE_DCP = "dcp", $TYPE_EI = "ei", $TYPE_ETHORNELL = "ethornell", _
-	  $TYPE_ENIGMA = "enigma", $TYPE_FEAD = "fead", $TYPE_FREEARC = "freearc", $TYPE_FSB = "fsb", $TYPE_GCF = "gcf", $TYPE_GHOST = "ghost", _
-	  $TYPE_HLP = "hlp", $TYPE_HOTFIX = "hotfix", $TYPE_IMG = "img", $TYPE_INNO = "inno", $TYPE_IS3ARC = "is3arc", $TYPE_ISCAB = "iscab", _
-	  $TYPE_ISEXE = "isexe", $TYPE_ISZ = "isz", $TYPE_KGB = "kgb", $TYPE_LZ = "lz", $TYPE_LZO = "lzo", $TYPE_LZX = "lzx", $TYPE_MHT = "mht", _
-	  $TYPE_MOLE = "mole", $TYPE_MSI = "msi", $TYPE_MSM = "msm", $TYPE_MSP = "msp", $TYPE_NBH = "nbh", $TYPE_NSIS = "NSIS", $TYPE_PEA = "pea", _
-	  $TYPE_QBMS = "qbms", $TYPE_RAR = "rar", $TYPE_RGSS3 = "rgss3", $TYPE_ROBO = "robo", $TYPE_RPA = "rpa", $TYPE_SFARK = "sfark", _
-	  $TYPE_SGB = "sgb", $TYPE_SIM = "sim", $TYPE_SIT = "sit", $TYPE_SQLITE = "sqlite", $TYPE_SUPERDAT = "superdat", $TYPE_SWF = "swf", _
-	  $TYPE_SWFEXE = "swfexe", $TYPE_TAR = "tar", $TYPE_THINSTALL = "thinstall", $TYPE_TTARCH = "ttarch", $TYPE_UHA = "uha", _
-	  $TYPE_UIF = "uif", $TYPE_UNITY = "unity", $TYPE_UNREAL = "unreal", $TYPE_VIDEO = "video", $TYPE_VIDEO_CONVERT = "video_convert", _
-	  $TYPE_VSSFX = "vssfx", $TYPE_VSSFX_PATH = "vssfxpath", $TYPE_WISE = "wise", $TYPE_WIX = "wix", $TYPE_ZIP = "zip", $TYPE_ZOO = "zoo", _
-	  $TYPE_ZPAQ = "zpaq"
 
 
 Opt("GUIOnEventMode", 1)
@@ -868,65 +855,65 @@ EndFunc
 Func filecompare($filetype_curr)
 	Select
 		Case StringInStr($filetype_curr, "7 zip archive data") Or StringInStr($filetype_curr, "7-zip archive data")
-			extract($TYPE_7Z, '7-Zip ' & t('TERM_ARCHIVE'))
+			extract("7z", '7-Zip ' & t('TERM_ARCHIVE'))
 		Case StringInStr($filetype_curr, "RAR archive data")
-			extract($TYPE_RAR, 'RAR ' & t('TERM_ARCHIVE'))
+			extract("rar", 'RAR ' & t('TERM_ARCHIVE'))
 		Case StringInStr($filetype_curr, "lzip compressed data")
-			extract($TYPE_LZ, "LZIP " & t('TERM_COMPRESSED') & " " & t('TERM_ARCHIVE'))
+			extract("lz", "LZIP " & t('TERM_COMPRESSED') & " " & t('TERM_ARCHIVE'))
 		Case StringInStr($filetype_curr, "Zip archive data") And Not StringInStr($filetype_curr, "7")
-			extract($TYPE_ZIP, 'ZIP ' & t('TERM_ARCHIVE'))
+			extract("zip", 'ZIP ' & t('TERM_ARCHIVE'))
 		Case StringInStr($filetype_curr, "StuffIt Archive")
-			extract($TYPE_SIT, 'StuffIt ' & t('TERM_ARCHIVE'))
+			extract("sit", 'StuffIt ' & t('TERM_ARCHIVE'))
 		Case StringInStr($filetype_curr, "UHarc archive data", 0)
-			extract($TYPE_UHA, 'UHARC ' & t('TERM_ARCHIVE'))
+			extract("uha", 'UHARC ' & t('TERM_ARCHIVE'))
 		Case StringInStr($filetype_curr, "Symbian installation file", 0)
-			extract($TYPE_QBMS, 'SymbianOS ' & t('TERM_INSTALLER'), $sis)
+			extract('qbms', 'SymbianOS ' & t('TERM_INSTALLER'), $sis)
 		Case StringInStr($filetype_curr, "Zoo archive data", 0)
-			extract($TYPE_ZOO, 'ZOO ' & t('TERM_ARCHIVE'))
+			extract("zoo", 'ZOO ' & t('TERM_ARCHIVE'))
 		Case StringInStr($filetype_curr, "MS Outlook Express DBX file", 0)
-			extract($TYPE_QBMS, 'Outlook Express ' & t('TERM_ARCHIVE'), $dbx)
+			extract('qbms', 'Outlook Express ' & t('TERM_ARCHIVE'), $dbx)
 		Case StringInStr($filetype_curr, "bzip2 compressed data", 0)
-			extract($TYPE_7Z, 'bzip2 ' & t('TERM_COMPRESSED'), "bz2")
+			extract("7z", 'bzip2 ' & t('TERM_COMPRESSED'), "bz2")
 		Case StringInStr($filetype_curr, "ASCII cpio archive", 0)
-			extract($TYPE_7Z, 'CPIO ' & t('TERM_ARCHIVE'))
+			extract("7z", 'CPIO ' & t('TERM_ARCHIVE'))
 		Case StringInStr($filetype_curr, "gzip compressed", 0)
-			extract($TYPE_7Z, 'gzip ' & t('TERM_COMPRESSED'), "gz")
+			extract("7z", 'gzip ' & t('TERM_COMPRESSED'), "gz")
 		Case StringInStr($filetype_curr, "LZX compressed archive", 0)
-			extract($TYPE_LZX, 'LZX ' & t('TERM_COMPRESSED'))
+			extract("lzx", 'LZX ' & t('TERM_COMPRESSED'))
 		Case StringInStr($filetype_curr, "ARJ archive", 0)
-			extract($TYPE_7Z, 'ARJ ' & t('TERM_ARCHIVE'))
+			extract("7z", 'ARJ ' & t('TERM_ARCHIVE'))
 		Case StringInStr($filetype_curr, "POSIX tar archive", 0)
-			extract($TYPE_TAR, 'Tar ' & t('TERM_ARCHIVE'))
+			extract("tar", 'Tar ' & t('TERM_ARCHIVE'))
 		Case StringInStr($filetype_curr, "LHa", 0) And StringInStr($filetype_curr, "archive data", 0)
-			extract($TYPE_7Z, 'LZH ' & t('TERM_COMPRESSED'))
+			extract("7z", 'LZH ' & t('TERM_COMPRESSED'))
 		Case StringInStr($filetype_curr, "Macromedia Flash data", 0)
-			extract($TYPE_SWF, 'Shockwave Flash ' & t('TERM_CONTAINER'))
+			extract("swf", 'Shockwave Flash ' & t('TERM_CONTAINER'))
 		Case StringInStr($filetype_curr, "PowerISO Direct-Access-Archive", 0)
-			extract($TYPE_DAA, 'DAA/GBI ' & t('TERM_IMAGE'))
+			extract("daa", 'DAA/GBI ' & t('TERM_IMAGE'))
 		Case StringInStr($filetype_curr, "sfArk compressed Soundfont")
-			extract($TYPE_SFARK, 'sfArk ' & t('TERM_COMPRESSED'))
+			extract("sfark", 'sfArk ' & t('TERM_COMPRESSED'))
 		Case StringInStr($filetype_curr, "SQLite", 0)
-			extract($TYPE_SQLITE, 'SQLite ' & t('TERM_FILE'))
+			extract("sqlite", 'SQLite ' & t('TERM_FILE'))
 		Case StringInStr($filetype_curr, "XZ compressed data")
-			extract($TYPE_7Z, 'XZ ' & t('TERM_COMPRESSED'), "xz")
+			extract("7z", 'XZ ' & t('TERM_COMPRESSED'), "xz")
 		Case StringInStr($filetype_curr, "MS Windows HtmlHelp Data")
-			extract($TYPE_CHM, 'Compiled HTML ' & t('TERM_HELP'))
+			extract("chm", 'Compiled HTML ' & t('TERM_HELP'))
 		Case StringInStr($filetype_curr, "MoPaQ", 0)
 			HasPlugin($mpq)
-			extract($TYPE_QBMS, 'MPQ ' & t('TERM_ARCHIVE'), $mpq)
+			extract("qbms", 'MPQ ' & t('TERM_ARCHIVE'), $mpq)
 		Case (StringInStr($filetype_curr, "RIFF", 0) And Not StringInStr($filetype_curr, "WAVE audio", 0)) Or _
 			 StringInStr($filetype_curr, "MPEG v", 0) Or StringInStr($filetype_curr, "MPEG sequence") Or _
 			 StringInStr($filetype_curr, "Microsoft ASF") Or StringInStr($filetype_curr, "GIF image") Or _
 			 StringInStr($filetype_curr, "PNG image") Or StringInStr($filetype_curr, "MNG video")
-			extract($TYPE_VIDEO, t('TERM_VIDEO') & ' ' & t('TERM_FILE'))
+			extract("video", t('TERM_VIDEO') & ' ' & t('TERM_FILE'))
 		Case StringInStr($filetype_curr, "AAC,")
-			extract($TYPE_AUDIO, 'AAC ' & t('TERM_AUDIO') & ' ' & t('TERM_FILE'))
+			extract("audio", 'AAC ' & t('TERM_AUDIO') & ' ' & t('TERM_FILE'))
 		Case StringInStr($filetype_curr, "FLAC audio")
-			extract($TYPE_AUDIO, 'FLAC ' & t('TERM_AUDIO') & ' ' & t('TERM_FILE'))
+			extract("audio", 'FLAC ' & t('TERM_AUDIO') & ' ' & t('TERM_FILE'))
 		Case StringInStr($filetype_curr, "Ogg data, Vorbis audio")
-			extract($TYPE_AUDIO, 'OGG Vorbis ' & t('TERM_AUDIO') & ' ' & t('TERM_FILE'))
+			extract("audio", 'OGG Vorbis ' & t('TERM_AUDIO') & ' ' & t('TERM_FILE'))
 		Case StringInStr($filetype_curr, "Audio file", 0) Or StringInStr($filetype_curr, "Dolby Digital stream", 0)
-			extract($TYPE_AUDIO, t('TERM_AUDIO') & ' ' & t('TERM_FILE'))
+			extract("audio", t('TERM_AUDIO') & ' ' & t('TERM_FILE'))
 		Case StringInStr($filetype_curr, "ISO", 0) And StringInStr($filetype_curr, "filesystem", 0)
 			CheckIso()
 		Case Else
@@ -953,202 +940,202 @@ Func tridcompare($filetype_curr)
 	Cout("--> " & $filetype_curr)
 	Select
 		Case StringInStr($filetype_curr, "7-Zip compressed archive", 0)
-			extract($TYPE_7Z, '7-Zip ' & t('TERM_ARCHIVE'))
+			extract("7z", '7-Zip ' & t('TERM_ARCHIVE'))
 
 		Case StringInStr($filetype_curr, "ACE compressed archive", 0) _
 			 Or StringInStr($filetype_curr, "ACE Self-Extracting Archive", 0)
-			extract($TYPE_ACE, 'ACE ' & t('TERM_ARCHIVE'))
+			extract("ace", 'ACE ' & t('TERM_ARCHIVE'))
 
 		Case StringInStr($filetype_curr, "Android boot image")
-			extract($TYPE_BOOTIMG, ' Android boot ' & t('TERM_IMAGE'))
+			extract("bootimg", ' Android boot ' & t('TERM_IMAGE'))
 
 		Case StringInStr($filetype_curr, "ALZip compressed archive")
 			CheckAlz()
 
 		Case StringInStr($filetype_curr, "LZIP compressed archive")
-			extract($TYPE_LZ, "LZIP " & t('TERM_COMPRESSED'))
+			extract("lz", "LZIP " & t('TERM_COMPRESSED'))
 
 		Case StringInStr($filetype_curr, "FreeArc compressed archive", 0)
-			extract($TYPE_FREEARC, 'FreeArc ' & t('TERM_ARCHIVE'))
+			extract("freearc", 'FreeArc ' & t('TERM_ARCHIVE'))
 
 		Case StringInStr($filetype_curr, "ARJ compressed archive", 0)
-			extract($TYPE_7Z, 'ARJ ' & t('TERM_ARCHIVE'))
+			extract("7z", 'ARJ ' & t('TERM_ARCHIVE'))
 
 		Case StringInStr($filetype_curr, "BCM compressed file")
-			extract($TYPE_BCM, 'BCM ' & t('TERM_COMPRESSED'))
+			extract("bcm", 'BCM ' & t('TERM_COMPRESSED'))
 
 		Case StringInStr($filetype_curr, "bzip2 compressed archive", 0)
-			extract($TYPE_7Z, 'bzip2 ' & t('TERM_COMPRESSED'), "bz2")
+			extract("7z", 'bzip2 ' & t('TERM_COMPRESSED'), "bz2")
 
 		Case StringInStr($filetype_curr, "Broken Age package", 0)
 			CheckGame(False)
 
 		Case StringInStr($filetype_curr, "Microsoft Cabinet Archive", 0) Or StringInStr($filetype_curr, "IncrediMail letter/ecard", 0)
-			extract($TYPE_CAB, 'Microsoft CAB ' & t('TERM_ARCHIVE'))
+			extract("cab", 'Microsoft CAB ' & t('TERM_ARCHIVE'))
 
 		Case StringInStr($filetype_curr, "Magic ISO Universal Image Format", 0)
-			extract($TYPE_UIF, 'UIF ' & t('TERM_IMAGE'))
+			extract("uif", 'UIF ' & t('TERM_IMAGE'))
 
 		Case StringInStr($filetype_curr, "CDImage", 0) Or StringInStr($filetype_curr, "null bytes", 0)
 			CheckIso()
 			check7z()
 
 		Case StringInStr($filetype_curr, "Compiled HTML Help File", 0)
-			extract($TYPE_CHM, 'Compiled HTML ' & t('TERM_HELP'))
+			extract("chm", 'Compiled HTML ' & t('TERM_HELP'))
 
 		Case StringInStr($filetype_curr, "CPIO Archive", 0)
-			extract($TYPE_7Z, 'CPIO ' & t('TERM_ARCHIVE'))
+			extract("7z", 'CPIO ' & t('TERM_ARCHIVE'))
 
 		Case StringInStr($filetype_curr, "PowerISO Direct-Access-Archive", 0) Or StringInStr($filetype_curr, "gBurner Image", 0)
-			extract($TYPE_DAA, 'DAA/GBI ' & t('TERM_IMAGE'))
+			extract("daa", 'DAA/GBI ' & t('TERM_IMAGE'))
 
 		Case StringInStr($filetype_curr, "Debian Linux Package", 0)
-			extract($TYPE_7Z, 'Debian ' & t('TERM_PACKAGE'))
+			extract("7z", 'Debian ' & t('TERM_PACKAGE'))
 
 		Case StringInStr($filetype_curr, "Wintermute Engine data", 0)
-			extract($TYPE_DCP, 'Wintermute Engine ' & t('TERM_GAME') & t('TERM_PACKAGE'))
+			extract("dcp", 'Wintermute Engine ' & t('TERM_GAME') & t('TERM_PACKAGE'))
 
 		Case StringInStr($filetype_curr, "DGCA Digital G Codec Archiver", 0)
-			extract($TYPE_DGCA, 'DGCA ' & t('TERM_ARCHIVE'))
+			extract("dgca", 'DGCA ' & t('TERM_ARCHIVE'))
 
 		Case StringInStr($filetype_curr, "Disk Image (Macintosh)", 0)
-			extract($TYPE_7Z, 'Macintosh ' & t('TERM_DISK') & ' ' & t('TERM_IMAGE'))
+			extract("7z", 'Macintosh ' & t('TERM_DISK') & ' ' & t('TERM_IMAGE'))
 
 		Case StringInStr($filetype_curr, "FMOD Sample Bank Format")
-			extract($TYPE_FSB, 'FMOD ' & t('TERM_CONTAINER'))
+			extract("fsb", 'FMOD ' & t('TERM_CONTAINER'))
 
 		Case StringInStr($filetype_curr, "Gentee Installer executable", 0) Or StringInStr($filetype_curr, "Installer VISE executable", 0) Or _
 			 StringInStr($filetype_curr, "Setup Factory", 0)
 			checkIE()
 
 		Case StringInStr($filetype_curr, "GZipped", 0)
-			extract($TYPE_7Z, 'gzip ' & t('TERM_COMPRESSED'), "gz")
+			extract("7z", 'gzip ' & t('TERM_COMPRESSED'), "gz")
 
 		Case StringInStr($filetype_curr, "Windows Help File", 0)
-			extract($TYPE_HLP, 'Windows ' & t('TERM_HELP'))
+			extract("hlp", 'Windows ' & t('TERM_HELP'))
 
 		Case StringInStr($filetype_curr, "Generic PC disk image", 0)
 			CheckIso()
 			check7z()
-			extract($TYPE_IMG, 'Floppy ' & t('TERM_DISK') & ' ' & t('TERM_IMAGE'))
+			extract("img", 'Floppy ' & t('TERM_DISK') & ' ' & t('TERM_IMAGE'))
 
 		Case StringInStr($filetype_curr, "Inno Setup installer", 0)
 			checkInno()
 
 		Case StringInStr($filetype_curr, "InstallShield archive", 0)
-			extract($TYPE_IS3ARC, 'InstallShield 3.x ' & t('TERM_ARCHIVE'))
+			extract("is3arc", 'InstallShield 3.x ' & t('TERM_ARCHIVE'))
 
 		Case StringInStr($filetype_curr, "InstallShield compressed archive", 0)
-			extract($TYPE_ISCAB, 'InstallShield CAB ' & t('TERM_ARCHIVE'))
+			extract("iscab", 'InstallShield CAB ' & t('TERM_ARCHIVE'))
 
 		Case StringInStr($filetype_curr, "ISo Zipped format", 0)
-			extract($TYPE_ISZ, 'Zipped ISO ' & t('TERM_IMAGE'))
+			extract("isz", 'Zipped ISO ' & t('TERM_IMAGE'))
 
 		Case StringInStr($filetype_curr, "KiriKiri Adventure Game System Package", 0)
-			extract($TYPE_ARC_CONV, 'KiriKiri Adventure Game System ' & t('TERM_PACKAGE'))
+			extract("arc_conv", 'KiriKiri Adventure Game System ' & t('TERM_PACKAGE'))
 
 		Case StringInStr($filetype_curr, "KGB archive", 0)
-			extract($TYPE_KGB, 'KGB ' & t('TERM_ARCHIVE'))
+			extract("kgb", 'KGB ' & t('TERM_ARCHIVE'))
 
 		Case StringInStr($filetype_curr, "LHARC/LZARK compressed archive", 0)
-			extract($TYPE_7Z, 'LZH ' & t('TERM_COMPRESSED'))
+			extract("7z", 'LZH ' & t('TERM_COMPRESSED'))
 
 		Case StringInStr($filetype_curr, "Livemaker Engine main game executable", 0)
-			extract($TYPE_CRAGE, 'Livemaker ' & t('TERM_GAME') & t('TERM_PACKAGE'))
+			extract("crage", 'Livemaker ' & t('TERM_GAME') & t('TERM_PACKAGE'))
 
 		Case StringInStr($filetype_curr, "lzop compressed", 0)
-			extract($TYPE_LZO, 'LZO ' & t('TERM_COMPRESSED'))
+			extract("lzo", 'LZO ' & t('TERM_COMPRESSED'))
 
 		Case StringInStr($filetype_curr, "LZX Amiga compressed archive", 0)
-			extract($TYPE_LZX, 'LZX ' & t('TERM_COMPRESSED'))
+			extract("lzx", 'LZX ' & t('TERM_COMPRESSED'))
 
 		Case StringInStr($filetype_curr, "Microsoft Internet Explorer Web Archive") Or StringInStr($filetype_curr, "MIME HTML archive format")
-			extract($TYPE_MHT, 'MHTML ' & t('TERM_ARCHIVE'))
+			extract("mht", 'MHTML ' & t('TERM_ARCHIVE'))
 
 		Case StringInStr($filetype_curr, "Microsoft Windows Installer merge module", 0)
-			extract($TYPE_MSM, 'Windows Installer (MSM) ' & t('TERM_MERGE_MODULE'))
+			extract("msm", 'Windows Installer (MSM) ' & t('TERM_MERGE_MODULE'))
 
 		Case StringInStr($filetype_curr, "Microsoft Windows Installer", 0)
-			extract($TYPE_MSI, 'Windows Installer (MSI) ' & t('TERM_PACKAGE'))
+			extract("msi", 'Windows Installer (MSI) ' & t('TERM_PACKAGE'))
 
 		Case StringInStr($filetype_curr, "Microsoft Windows Installer patch", 0)
-			extract($TYPE_MSP, 'Windows Installer (MSP) ' & t('TERM_PATCH'))
+			extract("msp", 'Windows Installer (MSP) ' & t('TERM_PATCH'))
 
 		Case StringInStr($filetype_curr, "MPQ Archive - Blizzard game data", 0)
 			HasPlugin($mpq)
-			extract($TYPE_QBMS, 'MPQ ' & t('TERM_ARCHIVE'), $mpq)
+			extract("qbms", 'MPQ ' & t('TERM_ARCHIVE'), $mpq)
 
 		Case StringInStr($filetype_curr, "HTC NBH ROM Image", 0)
-			extract($TYPE_NBH, 'NBH ' & t('TERM_IMAGE'))
+			extract("nbh", 'NBH ' & t('TERM_IMAGE'))
 
 		Case StringInStr($filetype_curr, "Outlook Express E-mail folder", 0)
-			extract($TYPE_QBMS, 'Outlook Express ' & t('TERM_ARCHIVE'), $dbx)
+			extract('qbms', 'Outlook Express ' & t('TERM_ARCHIVE'), $dbx)
 
 		Case StringInStr($filetype_curr, "PEA compressed archive", 0)
-			extract($TYPE_PEA, 'Pea ' & t('TERM_ARCHIVE'))
+			extract("pea", 'Pea ' & t('TERM_ARCHIVE'))
 
 		Case StringInStr($filetype_curr, "RAR Archive", 0)
-			extract($TYPE_RAR, 'RAR ' & t('TERM_ARCHIVE'))
+			extract("rar", 'RAR ' & t('TERM_ARCHIVE'))
 
 		Case StringInStr($filetype_curr, "RPG Maker VX Ace", 0)
-			extract($TYPE_RGSS3, "RPG Maker VX Ace " & t('TERM_GAME') & t('TERM_ARCHIVE'))
+			extract("rgss3", "RPG Maker VX Ace " & t('TERM_GAME') & t('TERM_ARCHIVE'))
 
 		Case StringInStr($filetype_curr, "NScripter archive, version 1", 0)
-			extract($TYPE_ARC_CONV, "NScripter " & t('TERM_ARCHIVE'))
+			extract("arc_conv", "NScripter " & t('TERM_ARCHIVE'))
 
 		Case StringInStr($filetype_curr, "RPG Maker", 0)
-			extract($TYPE_ARC_CONV, "RPG Maker " & t('TERM_GAME') & t('TERM_ARCHIVE'))
+			extract("arc_conv", "RPG Maker " & t('TERM_GAME') & t('TERM_ARCHIVE'))
 
 		Case StringInStr($filetype_curr, "Smile Game Builder", 0)
-			extract($TYPE_SGB, "Smile Game Builder " & t('TERM_GAME') & t('TERM_ARCHIVE'))
+			extract("sgb", "Smile Game Builder " & t('TERM_GAME') & t('TERM_ARCHIVE'))
 
 		Case StringInStr($filetype_curr, "Telltale Games ressource archive", 0)
-			extract($TYPE_TTARCH, "Telltale " & t('TERM_GAME') & t('TERM_ARCHIVE'))
+			extract("ttarch", "Telltale " & t('TERM_GAME') & t('TERM_ARCHIVE'))
 
 		Case StringInStr($filetype_curr, "Wolf RPG Editor", 0)
-			extract($TYPE_ARC_CONV, "Wolf RPG Editor " & t('TERM_GAME') & t('TERM_ARCHIVE'))
+			extract("arc_conv", "Wolf RPG Editor " & t('TERM_GAME') & t('TERM_ARCHIVE'))
 
 		Case StringInStr($filetype_curr, "YU-RIS Script Engine", 0)
-			extract($TYPE_ARC_CONV, "YU-RIS Script Engine " & t('TERM_GAME') & t('TERM_ARCHIVE'))
+			extract("arc_conv", "YU-RIS Script Engine " & t('TERM_GAME') & t('TERM_ARCHIVE'))
 
 		Case StringInStr($filetype_curr, "ClsFileLink", 0) Or StringInStr($filetype_curr, "ERISA archive file", 0)
-			extract($TYPE_ARC_CONV, t('TERM_GAME') & t('TERM_ARCHIVE'))
+			extract("arc_conv", t('TERM_GAME') & t('TERM_ARCHIVE'))
 
 		Case StringInStr($filetype_curr, "Ethornell", 0)
-			extract($TYPE_ETHORNELL, "Ethornell Engine " & t('TERM_GAME') & t('TERM_ARCHIVE'))
+			extract("ethornell", "Ethornell Engine " & t('TERM_GAME') & t('TERM_ARCHIVE'))
 
 		Case StringInStr($filetype_curr, "Reflexive Arcade installer wrapper", 0)
-			extract($TYPE_INNO, 'Reflexive Arcade ' & t('TERM_INSTALLER'))
+			extract("inno", 'Reflexive Arcade ' & t('TERM_INSTALLER'))
 
 		Case StringInStr($filetype_curr, "Ren'Py data file", 0)
-			extract($TYPE_RPA, "Ren'Py " & t('TERM_ARCHIVE'))
+			extract("rpa", "Ren'Py " & t('TERM_ARCHIVE'))
 
 		Case StringInStr($filetype_curr, "RPM Linux Package", 0)
-			extract($TYPE_7Z, 'RPM ' & t('TERM_PACKAGE'))
+			extract("7z", 'RPM ' & t('TERM_PACKAGE'))
 
 		Case StringInStr($filetype_curr, "sfArk compressed SoundFont")
-			extract($TYPE_SFARK, 'sfArk ' & t('TERM_COMPRESSED'))
+			extract("sfark", 'sfArk ' & t('TERM_COMPRESSED'))
 
 		Case StringInStr($filetype_curr, "StuffIT SIT compressed archive", 0)
-			extract($TYPE_SIT, 'StuffIt ' & t('TERM_ARCHIVE'))
+			extract("sit", 'StuffIt ' & t('TERM_ARCHIVE'))
 
 		Case StringInStr($filetype_curr, "SymbianOS Installer", 0)
-			extract($TYPE_QBMS, 'SymbianOS ' & t('TERM_INSTALLER'), $sis)
+			extract('qbms', 'SymbianOS ' & t('TERM_INSTALLER'), $sis)
 
 		Case StringInStr($filetype_curr, "Macromedia Flash Player", 0)
-			extract($TYPE_SWF, 'Shockwave Flash ' & t('TERM_CONTAINER'))
+			extract("swf", 'Shockwave Flash ' & t('TERM_CONTAINER'))
 
 		Case StringInStr($filetype_curr, "TAR - Tape ARchive", 0)
-			extract($TYPE_TAR, 'Tar ' & t('TERM_ARCHIVE'))
+			extract("tar", 'Tar ' & t('TERM_ARCHIVE'))
 
 		Case StringInStr($filetype_curr, "UHARC compressed archive", 0)
-			extract($TYPE_UHA, 'UHARC ' & t('TERM_ARCHIVE'))
+			extract("uha", 'UHARC ' & t('TERM_ARCHIVE'))
 
 		Case StringInStr($filetype_curr, "Unity Engine Asset file")
-			extract($TYPE_UNITY, 'Unity Engine Asset ' & t('TERM_FILE'))
+			extract("unity", 'Unity Engine Asset ' & t('TERM_FILE'))
 
 		Case StringInStr($filetype_curr, "Unreal Package")
-			extract($TYPE_UNREAL, 'Unreal Engine ' & t('TERM_PACKAGE'))
+			extract("unreal", 'Unreal Engine ' & t('TERM_PACKAGE'))
 
 		Case StringInStr($filetype_curr, "Base64 Encoded file", 0)
 			extract("uu", 'Base64 ' & t('TERM_ENCODED'))
@@ -1163,62 +1150,63 @@ Func tridcompare($filetype_curr)
 			extract("uu", 'yEnc ' & t('TERM_ENCODED'))
 
 		Case StringInStr($filetype_curr, "Valve package", 0)
-			extract($TYPE_GCF, 'Valve ' & $fileext & " " & t('TERM_PACKAGE'))
+			extract("gcf", 'Valve ' & $fileext & " " & t('TERM_PACKAGE'))
 
 		Case StringInStr($filetype_curr, "Windows Imaging Format", 0)
-			extract($TYPE_7Z, 'WIM ' & t('TERM_IMAGE'))
+			extract("7z", 'WIM ' & t('TERM_IMAGE'))
 
 		Case StringInStr($filetype_curr, "Wise Installer Executable", 0)
-			extract($TYPE_WISE, 'Wise Installer ' & t('TERM_PACKAGE'))
+			extract("wise", 'Wise Installer ' & t('TERM_PACKAGE'))
 
 		Case StringInStr($filetype_curr, "UNIX Compressed", 0)
-			extract($TYPE_7Z, 'LZW ' & t('TERM_COMPRESSED'), "Z")
+			extract("7z", 'LZW ' & t('TERM_COMPRESSED'), "Z")
 
 		Case StringInStr($filetype_curr, "xz container", 0)
-			extract($TYPE_7Z, 'XZ ' & t('TERM_COMPRESSED'), "xz")
+			extract("7z", 'XZ ' & t('TERM_COMPRESSED'), "xz")
 
 		Case StringInStr($filetype_curr, "ZIP compressed archive", 0) Or _
 			 StringInStr($filetype_curr, "Winzip Win32 self-extracting archive", 0)
-			extract($TYPE_ZIP, 'ZIP ' & t('TERM_ARCHIVE'))
+			extract("zip", 'ZIP ' & t('TERM_ARCHIVE'))
 
 		Case StringInStr($filetype_curr, "Zip Self-Extracting archive", 0)
 			checkInno()
 
 		Case StringInStr($filetype_curr, "ZOO compressed archive", 0)
-			extract($TYPE_ZOO, 'ZOO ' & t('TERM_ARCHIVE'))
+			extract("zoo", 'ZOO ' & t('TERM_ARCHIVE'))
 
 		Case StringInStr($filetype_curr, "ZPAQ compressed archive", 0)
-			extract($TYPE_ZPAQ, 'ZPAQ ' & t('TERM_ARCHIVE'))
+			extract("zpaq", 'ZPAQ ' & t('TERM_ARCHIVE'))
 
 		; Forced to bottom of list due to false positives
 		Case StringInStr($filetype_curr, "LZMA compressed archive", 0)
 			check7z()
 
 		Case StringInStr($filetype_curr, "Enigma Virtual Box virtualized executable")
-			extract($TYPE_ENIGMA, 'Enigma Virtual Box ' & t('TERM_PACKAGE'))
+			extract("enigma", 'Enigma Virtual Box ' & t('TERM_PACKAGE'))
 
 		Case StringInStr($filetype_curr, "InstallShield setup", 0)
+			;extract("isexe", 'InstallShield ' & t('TERM_INSTALLER'))
 			checkInstallShield()
 
 		Case  StringInStr($filetype_curr, "MP3 audio", 0)
-			extract($TYPE_AUDIO, 'MP3 ' & t('TERM_AUDIO') & ' ' & t('TERM_FILE'))
+			extract("audio", 'MP3 ' & t('TERM_AUDIO') & ' ' & t('TERM_FILE'))
 
 		Case StringInStr($filetype_curr, "FLAC lossless", 0)
-			extract($TYPE_AUDIO, 'FLAC ' & t('TERM_AUDIO') & ' ' & t('TERM_FILE'))
+			extract("audio", 'FLAC ' & t('TERM_AUDIO') & ' ' & t('TERM_FILE'))
 
 		Case StringInStr($filetype_curr, "Windows Media (generic)", 0)
-			extract($TYPE_AUDIO, 'Windows Media ' & t('TERM_AUDIO') & ' ' & t('TERM_FILE'))
+			extract("audio", 'Windows Media ' & t('TERM_AUDIO') & ' ' & t('TERM_FILE'))
 
 		Case StringInStr($filetype_curr, "OGG Vorbis audio", 0)
-			extract($TYPE_AUDIO, 'OGG Vorbis ' & t('TERM_AUDIO') & ' ' & t('TERM_FILE'))
+			extract("audio", 'OGG Vorbis ' & t('TERM_AUDIO') & ' ' & t('TERM_FILE'))
 
 		Case StringInStr($filetype_curr, "Smacker movie/video")
-			extract($TYPE_VIDEO_CONVERT, t('TERM_VIDEO') & ' ' & t('TERM_FILE'))
+			extract("video_convert", t('TERM_VIDEO') & ' ' & t('TERM_FILE'))
 
 		Case StringInStr($filetype_curr, "Video") Or StringInStr($filetype_curr, "QuickTime Movie") Or _
 			 StringInStr($filetype_curr, "Matroska") Or StringInStr($filetype_curr, "Material Exchange Format") Or _
 			 StringInStr($filetype_curr, "Windows Media (generic)") Or StringInStr($filetype_curr, "GIF animated")
-			extract($TYPE_VIDEO, t('TERM_VIDEO') & ' ' & t('TERM_FILE'))
+			extract("video", t('TERM_VIDEO') & ' ' & t('TERM_FILE'))
 
 		Case StringInStr($filetype_curr, "null bytes") Or (StringInStr($filetype_curr, "phpMyAdmin SQL dump"))
 			terminate($STATUS_NOTPACKED, $file, "")
@@ -1306,10 +1294,10 @@ Func exescan($f, $scantype, $analyze = 1)
 	Select
 		; ExeInfo cannot detect big files, so PEiD is used as a fallback here
 		Case StringInStr($filetype_curr, "Enigma Virtual Box")
-			extract($TYPE_ENIGMA, 'Enigma Virtual Box ' & t('TERM_PACKAGE'))
+			extract("enigma", 'Enigma Virtual Box ' & t('TERM_PACKAGE'))
 
 		Case StringInStr($filetype_curr, "ARJ SFX", 0)
-			extract($TYPE_7Z, t('TERM_SFX') & ' ARJ ' & t('TERM_ARCHIVE'))
+			extract("7z", t('TERM_SFX') & ' ARJ ' & t('TERM_ARCHIVE'))
 
 		Case StringInStr($filetype_curr, "Borland Delphi", 0) And Not StringInStr($filetype_curr, "RAR SFX", 0)
 			$testinno = True
@@ -1325,53 +1313,53 @@ Func exescan($f, $scantype, $analyze = 1)
 			extract("ie", 'Installer VISE ' & t('TERM_INSTALLER'))
 
 		Case StringInStr($filetype_curr, "InstallShield", 0)
-			If Not $isfailed Then extract($TYPE_ISEXE, 'InstallShield ' & t('TERM_INSTALLER'))
+			If Not $isfailed Then extract("isexe", 'InstallShield ' & t('TERM_INSTALLER'))
 
 		Case StringInStr($filetype_curr, "KGB SFX", 0)
-			extract($TYPE_KGB, t('TERM_SFX') & ' KGB ' & t('TERM_PACKAGE'))
+			extract("kgb", t('TERM_SFX') & ' KGB ' & t('TERM_PACKAGE'))
 
 		Case StringInStr($filetype_curr, "Microsoft Visual C++", 0) And Not StringInStr($filetype_curr, "SPx Method", 0) And Not StringInStr($filetype_curr, "Custom", 0) And Not StringInStr($filetype_curr, "7.0", 0)
 			$test7z = True
 			$testie = True
 
 		Case StringInStr($filetype_curr, "Microsoft Visual C++ 7.0", 0) And StringInStr($filetype_curr, "Custom", 0) And Not StringInStr($filetype_curr, "Hotfix", 0)
-			extract($TYPE_VSSFX, 'Visual C++ ' & t('TERM_SFX') & ' ' & t('TERM_INSTALLER'))
+			extract("vssfx", 'Visual C++ ' & t('TERM_SFX') & ' ' & t('TERM_INSTALLER'))
 
 		Case StringInStr($filetype_curr, "Microsoft Visual C++ 6.0", 0) And StringInStr($filetype_curr, "Custom", 0)
-			extract($TYPE_VSSFX_PATH, 'Visual C++ ' & t('TERM_SFX') & '' & t('TERM_INSTALLER'))
+			extract("vssfxpath", 'Visual C++ ' & t('TERM_SFX') & '' & t('TERM_INSTALLER'))
 
 		Case StringInStr($filetype_curr, "Netopsystems FEAD Optimizer", 0)
-			extract($TYPE_FEAD, 'Netopsystems FEAD ' & t('TERM_PACKAGE'))
+			extract("fead", 'Netopsystems FEAD ' & t('TERM_PACKAGE'))
 
 		Case StringInStr($filetype_curr, "Nullsoft PiMP SFX", 0)
 			checkNSIS()
 
 		Case StringInStr($filetype_curr, "PEtite", 1)
-			If Not checkArj() Then extract($TYPE_ACE, t('TERM_SFX') & ' ACE ' & t('TERM_ARCHIVE'))
+			If Not checkArj() Then extract("ace", t('TERM_SFX') & ' ACE ' & t('TERM_ARCHIVE'))
 
 		Case StringInStr($filetype_curr, "RAR SFX", 0)
-			extract($TYPE_RAR, t('TERM_SFX') & ' RAR ' & t('TERM_ARCHIVE'))
+			extract("rar", t('TERM_SFX') & ' RAR ' & t('TERM_ARCHIVE'))
 
 		Case StringInStr($filetype_curr, "Reflexive Arcade Installer", 0)
-			extract($TYPE_INNO, 'Reflexive Arcade ' & t('TERM_INSTALLER'))
+			extract("inno", 'Reflexive Arcade ' & t('TERM_INSTALLER'))
 
 		Case StringInStr($filetype_curr, "RoboForm Installer", 0)
-			extract($TYPE_ROBO, 'RoboForm ' & t('TERM_INSTALLER'))
+			extract("robo", 'RoboForm ' & t('TERM_INSTALLER'))
 
 		Case StringInStr($filetype_curr, "Setup Factory 6.x", 0)
 			extract("ie", 'Setup Factory ' & t('TERM_ARCHIVE'))
 
 		Case StringInStr($filetype_curr, "SPx Method", 0) Or StringInStr($filetype_curr, "CAB SFX", 0)
-			extract($TYPE_CAB, t('TERM_SFX') & ' Microsoft CAB ' & t('TERM_ARCHIVE'))
+			extract("cab", t('TERM_SFX') & ' Microsoft CAB ' & t('TERM_ARCHIVE'))
 
 		Case StringInStr($filetype_curr, "SuperDAT", 0)
-			extract($TYPE_SUPERDAT, 'McAfee SuperDAT ' & t('TERM_UPDATER'))
+			extract("superdat", 'McAfee SuperDAT ' & t('TERM_UPDATER'))
 
 		Case StringInStr($filetype_curr, "Wise", 0) Or StringInStr($filetype_curr, "PEncrypt 4.0", 0)
-			extract($TYPE_WISE, 'Wise Installer ' & t('TERM_PACKAGE'))
+			extract("wise", 'Wise Installer ' & t('TERM_PACKAGE'))
 
 		Case StringInStr($filetype_curr, "ZIP SFX", 0)
-			extract($TYPE_ZIP, t('TERM_SFX') & ' ZIP ' & t('TERM_ARCHIVE'))
+			extract("zip", t('TERM_SFX') & ' ZIP ' & t('TERM_ARCHIVE'))
 
 		Case StringInStr($filetype_curr, "upx", 0)
 			unpack($PACKER_UPX)
@@ -1434,22 +1422,22 @@ Func advexescan()
 	; Match known patterns
 	Select
 		Case StringInStr($filetype_curr, "WinAce / SFX Factory", 0)
-			extract($TYPE_ACE, t('TERM_SFX') & ' ACE ' & t('TERM_ARCHIVE'))
+			extract("ace", t('TERM_SFX') & ' ACE ' & t('TERM_ARCHIVE'))
 
 		Case StringInStr($filetype_curr, "Advanced Installer", 0)
-			extract($TYPE_AI, 'Advanced Installer ' & t('TERM_PACKAGE'))
+			extract("ai", 'Advanced Installer ' & t('TERM_PACKAGE'))
 
 		Case StringInStr($filetype_curr, "FreeArc", 0)
-			extract($TYPE_FREEARC, 'FreeArc ' & t('TERM_ARCHIVE'))
+			extract("freearc", 'FreeArc ' & t('TERM_ARCHIVE'))
 
 		Case StringInStr($filetype_curr, "CreateInstall", 0)
-			extract($TYPE_CI, 'CreateInstall ' & t('TERM_INSTALLER'))
+			extract("ci", 'CreateInstall ' & t('TERM_INSTALLER'))
 
 		Case StringInStr($filetype_curr, "Excelsior Installer", 0)
-			extract($TYPE_EI, 'Excelsior Installer ' & t('TERM_INSTALLER'))
+			extract("ei", 'Excelsior Installer ' & t('TERM_INSTALLER'))
 
 		Case StringInStr($filetype_curr, "Ghost Installer Studio", 0)
-			extract($TYPE_GHOST, 'Ghost Installer Studio ' & t('TERM_INSTALLER'))
+			extract("ghost", 'Ghost Installer Studio ' & t('TERM_INSTALLER'))
 
 		Case StringInStr($filetype_curr, "Gentee Installer", 0) Or StringInStr($filetype_curr, "Installer VISE", 0) Or _
 			 StringInStr($filetype_curr, "Setup Factory 6.x", 0)
@@ -1460,40 +1448,40 @@ Func advexescan()
 
 		; Needs to be before InstallShield
 		Case StringInStr($filetype_curr, "InstallAware", 0)
-			extract($TYPE_7Z, 'InstallAware ' & t('TERM_INSTALLER') & ' ' & t('TERM_PACKAGE'))
+			extract("7z", 'InstallAware ' & t('TERM_INSTALLER') & ' ' & t('TERM_PACKAGE'))
 
 		Case StringInStr($filetype_curr, "InstallShield", 0)
-			If Not $isfailed Then extract($TYPE_ISEXE, 'InstallShield ' & t('TERM_INSTALLER'))
+			If Not $isfailed Then extract("isexe", 'InstallShield ' & t('TERM_INSTALLER'))
 
 		Case StringInStr($filetype_curr, "KGB SFX", 0)
-			extract($TYPE_KGB, t('TERM_SFX') & ' KGB ' & t('TERM_PACKAGE'))
+			extract("kgb", t('TERM_SFX') & ' KGB ' & t('TERM_PACKAGE'))
 
 		Case StringInStr($filetype_curr, "Microsoft Visual C++ 7.0", 0) And StringInStr($filetype_curr, "Custom", 0) And Not StringInStr($filetype_curr, "Hotfix", 0)
-			extract($TYPE_VSSFX, 'Visual C++ ' & t('TERM_SFX') & ' ' & t('TERM_INSTALLER'))
+			extract("vssfx", 'Visual C++ ' & t('TERM_SFX') & ' ' & t('TERM_INSTALLER'))
 
 		Case StringInStr($filetype_curr, "Microsoft Visual C++ 6.0", 0) And StringInStr($filetype_curr, "Custom", 0)
-			extract($TYPE_VSSFX_PATH, 'Visual C++ ' & t('TERM_SFX') & '' & t('TERM_INSTALLER'))
+			extract("vssfxpath", 'Visual C++ ' & t('TERM_SFX') & '' & t('TERM_INSTALLER'))
 
 		Case StringInStr($filetype_curr, "www.molebox.com")
-			extract($TYPE_MOLE, 'Mole Box ' & t('TERM_CONTAINER'))
+			extract("mole", 'Mole Box ' & t('TERM_CONTAINER'))
 
 		Case StringInStr($filetype_curr, "Netopsystems FEAD Optimizer", 0)
-			extract($TYPE_FEAD, 'Netopsystems FEAD ' & t('TERM_PACKAGE'))
+			extract("fead", 'Netopsystems FEAD ' & t('TERM_PACKAGE'))
 
 		Case StringInStr($filetype_curr, "Nullsoft", 0);
 			checkNSIS()
 
 		Case StringInStr($filetype_curr, "RAR SFX", 0)
-			extract($TYPE_RAR, t('TERM_SFX') & ' RAR ' & t('TERM_ARCHIVE'));
+			extract("rar", t('TERM_SFX') & ' RAR ' & t('TERM_ARCHIVE'));
 
 		Case StringInStr($filetype_curr, "Reflexive Arcade Installer", 0)
-			extract($TYPE_INNO, 'Reflexive Arcade ' & t('TERM_INSTALLER'))
+			extract("inno", 'Reflexive Arcade ' & t('TERM_INSTALLER'))
 
 		Case StringInStr($filetype_curr, "RoboForm Installer", 0)
-			extract($TYPE_ROBO, 'RoboForm ' & t('TERM_INSTALLER'))
+			extract("robo", 'RoboForm ' & t('TERM_INSTALLER'))
 
 		Case StringInStr($filetype_curr, "WiX Installer")
-			extract($TYPE_WIX, 'WiX ' & t('TERM_INSTALLER'))
+			extract("wix", 'WiX ' & t('TERM_INSTALLER'))
 
 		Case StringInStr($filetype_curr, "Microsoft SFX CAB", 0) And StringInStr($filetype_curr, "rename file *.exe as *.cab", 0)
 			Prompt(1, "FILE_COPY", $file, 1)
@@ -1504,35 +1492,35 @@ Func advexescan()
 			check7z()
 
 		Case StringInStr($filetype_curr, "Smart Install Maker")
-			extract($TYPE_SIM, 'Smart Install Maker ' & t('TERM_INSTALLER'))
+			extract("sim", 'Smart Install Maker ' & t('TERM_INSTALLER'))
 
 		Case StringInStr($filetype_curr, "SPx Method", 0) Or StringInStr($filetype_curr, "Microsoft SFX CAB", 0)
-			extract($TYPE_CAB, t('TERM_SFX') & ' Microsoft CAB ' & t('TERM_ARCHIVE'))
+			extract("cab", t('TERM_SFX') & ' Microsoft CAB ' & t('TERM_ARCHIVE'))
 
 		Case StringInStr($filetype_curr, "SuperDAT", 0)
-			extract($TYPE_SUPERDAT, 'McAfee SuperDAT ' & t('TERM_UPDATER'))
+			extract("superdat", 'McAfee SuperDAT ' & t('TERM_UPDATER'))
 
 		Case StringInStr($filetype_curr, "Overlay :  SWF flash object ver", 0)
-			extract($TYPE_SWFEXE, 'Shockwave Flash ' & t('TERM_CONTAINER'))
+			extract("swfexe", 'Shockwave Flash ' & t('TERM_CONTAINER'))
 
 		Case StringInStr($filetype_curr, "VMware ThinApp", 0) Or StringInStr($filetype_curr, "Thinstall", 0) Or StringInStr($filetype_curr, "ThinyApp Packager", 0)
-			extract($TYPE_THINSTALL, "ThinApp/Thinstall" & t('TERM_ARCHIVE'))
+			extract("thinstall", "ThinApp/Thinstall" & t('TERM_ARCHIVE'))
 
 		Case StringInStr($filetype_curr, "Wise", 0) Or StringInStr($filetype_curr, "PEncrypt 4.0", 0)
-			extract($TYPE_WISE, 'Wise Installer ' & t('TERM_PACKAGE'))
+			extract("wise", 'Wise Installer ' & t('TERM_PACKAGE'))
 
 		Case StringInStr($filetype_curr, "ZIP SFX", 0)
-			extract($TYPE_ZIP, t('TERM_SFX') & ' ZIP ' & t('TERM_ARCHIVE'))
+			extract("zip", t('TERM_SFX') & ' ZIP ' & t('TERM_ARCHIVE'))
 
 		Case StringInStr($filetype_curr, "Borland Delphi", 0) And Not StringInStr($filetype_curr, "RAR SFX", 0)
 			$testinno = True
 			$testzip = True
 
 		Case StringInStr($filetype_curr, "Enigma Virtual Box")
-			extract($TYPE_ENIGMA, 'Enigma Virtual Box ' & t('TERM_PACKAGE'))
+			extract("enigma", 'Enigma Virtual Box ' & t('TERM_PACKAGE'))
 
 		Case StringInStr($filetype_curr, ".dmg  Mac OS", 0)
-			extract($TYPE_7Z, 'DMG ' & t('TERM_IMAGE'))
+			extract("7z", 'DMG ' & t('TERM_IMAGE'))
 
 		Case StringInStr($filetype_curr, "upx", 0)
 			unpack($PACKER_UPX)
@@ -1672,19 +1660,19 @@ Func check7z()
 		; Failsafe in case TrID misidentifies MS SFX
 		If StringInStr($return, "_sfx_manifest_") Then
 			_DeleteTrayMessageBox()
-			extract($TYPE_HOTFIX, 'Microsoft ' & t('TERM_HOTFIX'))
+			extract("hotfix", 'Microsoft ' & t('TERM_HOTFIX'))
 		EndIf
 		_DeleteTrayMessageBox()
 		If $fileext = "exe" Then
-			extract($TYPE_7Z, '7-Zip ' & t('TERM_INSTALLER') & ' ' & t('TERM_PACKAGE'))
+			extract("7z", '7-Zip ' & t('TERM_INSTALLER') & ' ' & t('TERM_PACKAGE'))
 		ElseIf $fileext = "iso" Then
-			extract($TYPE_7Z, 'Iso ' & t('TERM_IMAGE'))
+			extract("7z", 'Iso ' & t('TERM_IMAGE'))
 		ElseIf $fileext = "xz" Then
-			extract($TYPE_7Z, 'XZ ' & t('TERM_COMPRESSED'), "xz")
+			extract("7z", 'XZ ' & t('TERM_COMPRESSED'), "xz")
 		ElseIf $fileext = "z" Then
-			extract($TYPE_7Z, 'LZW ' & t('TERM_COMPRESSED'), "Z")
+			extract("7z", 'LZW ' & t('TERM_COMPRESSED'), "Z")
 		Else
-			extract($TYPE_7Z, '7-Zip ' & t('TERM_ARCHIVE'))
+			extract("7z", '7-Zip ' & t('TERM_ARCHIVE'))
 		EndIf
 	EndIf
 
@@ -1702,7 +1690,7 @@ Func CheckAlz()
 
 	If StringInStr($return, "Listing archive:") And Not (StringInStr($return, "corrupted file") Or StringInStr($return, "file open error")) Then
 		_DeleteTrayMessageBox()
-		extract($TYPE_ALZ, 'ALZ ' & t('TERM_ARCHIVE'))
+		extract("alz", 'ALZ ' & t('TERM_ARCHIVE'))
 	EndIf
 
 	Return False
@@ -1717,7 +1705,7 @@ Func checkArj()
 
 	If StringInStr($return, "Archive created:", 0) Then
 		_DeleteTrayMessageBox()
-		extract($TYPE_7Z, t('TERM_SFX') & ' ARJ ' & t('TERM_ARCHIVE'))
+		extract("7z", t('TERM_SFX') & ' ARJ ' & t('TERM_ARCHIVE'))
 	EndIf
 
 	_DeleteTrayMessageBox()
@@ -1736,7 +1724,7 @@ Func checkBin()
 			$file = $filedir & "\" & FileFindNextFile($NSISbin)
 			If @error Then ExitLoop
 			;FilenameParse($file)
-			extract($TYPE_7Z, ".bin " & t('TERM_ARCHIVE'), "", True, True)
+			extract("7z", ".bin " & t('TERM_ARCHIVE'), "", True, True)
 		WEnd
 	EndIf
 	FileClose($NSISbin)
@@ -1760,7 +1748,7 @@ Func CheckGame($bUseGaup = True)
 
 		Else
 			_DeleteTrayMessageBox()
-			extract($TYPE_QBMS, t('TERM_GAME') & t('TERM_PACKAGE'), $gaup, False, True)
+			extract("qbms", t('TERM_GAME') & t('TERM_PACKAGE'), $gaup, False, True)
 		EndIf
 	EndIf
 
@@ -1805,7 +1793,7 @@ Func CheckGame($bUseGaup = True)
 			And Not StringInStr($return, "expeceted") And $return <> "" Then
 				_SQLite_Close()
 				_SQLite_Shutdown()
-				extract($TYPE_QBMS, $game & " " & t('TERM_PACKAGE'), $bms)
+				extract('qbms', $game & " " & t('TERM_PACKAGE'), $bms)
 			EndIf
 		EndIf
 	EndIf
@@ -1831,7 +1819,7 @@ Func checkIE()
 		Return False
 	EndIf
 
-	extract($TYPE_QBMS, 'InstallExplorer ' & t('TERM_INSTALLER'), $ie)
+	extract("qbms", 'InstallExplorer ' & t('TERM_INSTALLER'), $ie)
 EndFunc
 
 ; Determine if file is Inno Setup installer
@@ -1844,22 +1832,22 @@ Func checkInno()
 			Or (StringInStr($return, "Signature detected:", 0) _
 			And Not StringInStr($return, "not a supported version", 0)) Then
 		_DeleteTrayMessageBox()
-		extract($TYPE_INNO, 'Inno Setup ' & t('TERM_INSTALLER'))
+		extract("inno", 'Inno Setup ' & t('TERM_INSTALLER'))
 	EndIf
 
 	_DeleteTrayMessageBox()
 	$innofailed = True
 	checkIE()
 	Return False
-EndFunc
+EndFunc   ;==>checkInno
 
 ; Determine if file is really an InstallShield installer (not false positive)
 Func checkInstallShield()
 	; InstallShield testing handled by extract function
 	Cout("Testing InstallShield")
-	extract($TYPE_ISEXE, 'InstallShield ' & t('TERM_INSTALLER'))
+	extract("isexe", 'InstallShield ' & t('TERM_INSTALLER'))
 	Return False
-EndFunc
+EndFunc   ;==>checkInstallShield
 
 ; Determine if file is CD/DVD image
 Func CheckIso()
@@ -1875,7 +1863,7 @@ Func CheckIso()
 		$isofailed = True
 		Return False
 	Else
-		Return extract($TYPE_QBMS, t('TERM_IMAGE') & " " & t('TERM_FILE'), $iso, $isofile, $isofile)
+		Return extract("qbms", t('TERM_IMAGE') & " " & t('TERM_FILE'), $iso, $isofile, $isofile)
 	EndIf
 EndFunc
 
@@ -1886,7 +1874,7 @@ Func checkNSIS()
 
 	$return = FetchStdout($7z & ' l "' & $file & '"', $filedir, @SW_HIDE)
 	If StringInStr($return, "Listing archive:") And Not StringInStr($return, "Can not open the file as") Then _
-		extract($TYPE_NSIS, 'NSIS ' & t('TERM_INSTALLER'))
+		extract("NSIS", 'NSIS ' & t('TERM_INSTALLER'))
 
 	_DeleteTrayMessageBox()
 	checkIE()
@@ -1901,7 +1889,7 @@ Func checkZip()
 	$return = FetchStdout($zip & ' -l "' & $file & '"', $filedir, @SW_HIDE)
 	If Not StringInStr($return, "signature not found", 0) Then
 		_DeleteTrayMessageBox()
-		extract($TYPE_ZIP, t('TERM_SFX') & ' ZIP ' & t('TERM_ARCHIVE'))
+		extract("zip", t('TERM_SFX') & ' ZIP ' & t('TERM_ARCHIVE'))
 	EndIf
 
 	_DeleteTrayMessageBox()
@@ -1925,6 +1913,102 @@ Func CheckExt()
 			Next
 		Next
 	Next
+#cs
+	Switch $fileext
+		Case "1", "lib"
+			extract("is3arc", 'InstallShield 3.x ' & t('TERM_ARCHIVE'))
+
+		Case "ace"
+			extract("ace", 'ACE ' & t('TERM_ARCHIVE'))
+
+		Case "assets"
+			extract("unity", 'Unity Engine Asset ' & t('TERM_FILE'))
+
+		Case "b64"
+			extract("uu", 'Base64 ' & t('TERM_ENCODED'))
+
+		Case "chm"
+			extract("chm", 'Compiled HTML ' & t('TERM_HELP'))
+
+		Case "cpio"
+			extract("7z", 'CPIO ' & t('TERM_ARCHIVE'))
+
+		Case "dbx"
+			extract('qbms', 'Outlook Express ' & t('TERM_ARCHIVE'), $dbx)
+
+		Case "deb"
+			extract("7z", 'Debian ' & t('TERM_PACKAGE'))
+
+		Case "hlp"
+			extract("hlp", 'Windows ' & t('TERM_HELP'))
+
+		Case "imf"
+			extract("cab", 'IncrediMail ' & t('TERM_ECARD'))
+
+		Case "img"
+			extract("img", 'Floppy ' & t('TERM_DISK') & ' ' & t('TERM_IMAGE'))
+
+		Case "kgb", "kge"
+			extract("kgb", 'KGB ' & t('TERM_ARCHIVE'))
+
+		Case "lzh", "lha"
+			extract("7z", 'LZH ' & t('TERM_COMPRESSED'))
+
+		Case "lzo"
+			extract("lzo", 'LZO ' & t('TERM_COMPRESSED'))
+
+		Case "lzx"
+			extract("lzx", 'LZX ' & t('TERM_COMPRESSED'))
+
+		Case "msm"
+			extract("msm", 'Windows Installer (MSM) ' & t('TERM_MERGE_MODULE'))
+
+		Case "pea"
+			extract("pea", 'Pea ' & t('TERM_ARCHIVE'))
+
+		Case "rar", "001", "cbr"
+			extract("rar", 'RAR ' & t('TERM_ARCHIVE'))
+
+		Case "rpm"
+			extract("7z", 'RPM ' & t('TERM_PACKAGE'))
+
+		Case "sis"
+			extract('qbms', 'SymbianOS ' & t('TERM_INSTALLER'), $sis)
+
+		Case "sit"
+			extract("sit", 'StuffIt ' & t('TERM_ARCHIVE'))
+
+		Case "tar"
+			extract("tar", 'Tar ' & t('TERM_ARCHIVE'))
+
+		Case "uha"
+			extract("uha", 'UHARC ' & t('TERM_ARCHIVE'))
+
+		Case "uif"
+			extract("uif", 'UIF ' & t('TERM_IMAGE'))
+
+		Case "vpk", "gcf", "ncf", "wad", "xzp"
+			extract("gcf", 'Valve ' & $fileext & " " & t('TERM_PACKAGE'))
+
+		Case "wim"
+			extract("7z", 'WIM ' & t('TERM_IMAGE'))
+
+		Case "yenc", "ntx"
+			extract("uu", 'yEnc ' & t('TERM_ENCODED'))
+
+		Case "zip", "cbz", "jar", "xpi", "wz"
+			extract("zip", 'ZIP ' & t('TERM_ARCHIVE'))
+
+		Case "zoo"
+			extract("zoo", 'ZOO ' & t('TERM_ARCHIVE'))
+
+		Case "rgss", "rgss2a"
+			extract("arc_conv", "RPG Maker " & t('TERM_GAME') & t('TERM_ARCHIVE'))
+
+		Case "rgss3a"
+			extract("rgss3", "RPG Maker VX Ace " & t('TERM_GAME') & t('TERM_ARCHIVE'))
+	EndSwitch
+#ce
 EndFunc
 
 ; Perform special actions for some file types
@@ -1933,12 +2017,12 @@ Func InitialCheckExt()
 	; Compound compressed files that require multiple actions
 	Switch $fileext
 		Case "ipk", "tbz2", "tgz", "tz", "tlz", "txz"
-			extract($TYPE_CTAR, 'Compressed Tar ' & t('TERM_ARCHIVE'))
+			extract("ctar", 'Compressed Tar ' & t('TERM_ARCHIVE'))
 		; image files - TrID is not always reliable with these formats
 		Case "bin", "cue", "cdi", "mdf"
 			CheckIso()
 		Case "dmg"
-			extract($TYPE_7Z, 'DMG ' & t('TERM_IMAGE'))
+			extract("7z", 'DMG ' & t('TERM_IMAGE'))
 		Case "iso", "nrg"
 			check7z()
 			CheckIso()
@@ -2019,7 +2103,7 @@ Func extract($arctype, $arcdisp = 0, $additionalParameters = "", $returnSuccess 
 
 	; Extract archive based on filetype
 	Switch $arctype
-		Case $TYPE_7Z
+		Case "7z"
 			Local $sPassword = _FindArchivePassword($7z & ' l -p -slt "' & $file & '"', $7z & ' t -p"%PASSWORD%" "' & $file & '"', "Encrypted = +", "Wrong password?", 0, "Everything is Ok")
 			_Run($7z & ' x ' & ($sPassword == 0? '"': '-p"' & $sPassword & '" "') & $file & '"', $outdir, @SW_HIDE, True, True, True, True)
 			If @extended Then terminate($STATUS_PASSWORD, $file, $arcdisp)
@@ -2051,7 +2135,7 @@ Func extract($arctype, $arcdisp = 0, $additionalParameters = "", $returnSuccess 
 				EndIf
 			EndIf
 
-		Case $TYPE_ACE
+		Case "ace"
 			$success = $RESULT_SUCCESS
 			Opt("WinTitleMatchMode", 3)
 			$pid = Run($ace & ' -x "' & $file & '" "' & $outdir & '"', $filedir)
@@ -2065,17 +2149,17 @@ Func extract($arctype, $arcdisp = 0, $additionalParameters = "", $returnSuccess 
 				Sleep(50)
 			WEnd
 
-		Case $TYPE_AI
+		Case "ai"
 			Warn_Execute($file & ' /extract:"' & $outdir & '"')
 			; ShellExecute is needed here to display UAC prompt, fails with Run()
 			ShellExecute($file, ' /extract:"' & $outdir & '"', $outdir)
 			ProcessWait($filenamefull, $Timeout)
 			ProcessWaitClose($filenamefull, $Timeout)
 
-		Case $TYPE_ALZ
+		Case "alz"
 			_Run($alz & ' -d "' & $outdir & '" "' & $file & '"', $outdir, True, True, False)
 
-		Case $TYPE_ARC_CONV
+		Case "arc_conv"
 			If Not HasPlugin($arc_conv, $returnFail) Then Return
 
 			$run = Run(Cout(_MakeCommand($arc_conv & ' "' & $file & '"', True)), $outdir, @SW_HIDE)
@@ -2097,14 +2181,14 @@ Func extract($arctype, $arcdisp = 0, $additionalParameters = "", $returnSuccess 
 			$run = 0
 			MoveFiles($file & "~", $outdir, True, "", True)
 
-		Case $TYPE_AUDIO
+		Case "audio"
 			HasFFMPEG()
 			_Run($cmd & $ffmpeg & ' -i "' & $file & '" "' & ($iUnicodeMode? $sUnicodeName: $filename) & '.wav"', $outdir, @SW_HIDE)
 
-		Case $TYPE_BCM
+		Case "bcm"
 			_Run($bcm & ' -d "' & $file & '" "' & $outdir & '\' & ($iUnicodeMode? $sUnicodeName: $filename) & '"', $filedir, @SW_HIDE, True, True, False)
 
-		Case $TYPE_BOOTIMG ;Test
+		Case "bootimg" ;Test
 			HasPlugin($bootimg)
 			$ret = $outdir & "\" & $bootimg
 			$ret2 = $outdir & '\boot.img'
@@ -2114,14 +2198,14 @@ Func extract($arctype, $arcdisp = 0, $additionalParameters = "", $returnSuccess 
 			FileMove($ret2, $file)
 			FileDelete($ret)
 
-		Case $TYPE_CAB
+		Case "cab"
 			If StringInStr($filetype, 'Type 1', 0) Then
 				RunWait(Warn_Execute(Quote($file & '" /q /x:"' & $outdir), $outdir)
 			Else
 				check7z()
 			EndIf
 
-		Case $TYPE_CHM
+		Case "chm"
 			_Run($7z & ' x "' & $file & '"', $outdir)
 			Local $aReturn[2] = ['#*', '$*']
 			Cleanup($aReturn)
@@ -2136,7 +2220,7 @@ Func extract($arctype, $arcdisp = 0, $additionalParameters = "", $returnSuccess 
 			EndIf
 			FileClose($handle)
 
-		Case $TYPE_CI
+		Case "ci"
 			HasPlugin($ci)
 			$return = @TempDir & "\ci.txt"
 			$ret = FileOpen($return, 8+2)
@@ -2146,11 +2230,11 @@ Func extract($arctype, $arcdisp = 0, $additionalParameters = "", $returnSuccess 
 			FileDelete($return)
 			terminate($STATUS_SILENT, "", "")
 
-		Case $TYPE_CRAGE
+		Case "crage"
 			HasPlugin($crage)
 			_Run($crage & ' -v -p "' & $file & '" -o "' & $outdir & '"', $bindir & "crass-0.4.14.0", @SW_SHOW, True, False, False)
 
-		Case $TYPE_CTAR
+		Case "ctar"
 			$oldfiles = ReturnFiles($outdir)
 
 			; Decompress archive with 7-zip
@@ -2174,13 +2258,13 @@ Func extract($arctype, $arcdisp = 0, $additionalParameters = "", $returnSuccess 
 			EndIf
 			FileClose($handle)
 
-		Case $TYPE_DGCA
+		Case "dgca"
 			HasPlugin($dgca)
 			Local $sPassword = _FindArchivePassword($dgca & ' e "' & $file & '"', $dgca & ' l -p%PASSWORD% "' & $file & '"', "Archive encrypted.", 0, -2, "-------------------------")
 			_Run($dgca & ' e ' & ($sPassword == 0? '"': '-p' & $sPassword & ' "') & $file & '" "' & $outdir & '"', $outdir, @SW_HIDE, True, True, False, False)
 			If @extended Then terminate($STATUS_PASSWORD, $file, $arcdisp)
 
-		Case $TYPE_DAA
+		Case "daa"
 			; Prompt user to continue
 			_DeleteTrayMessageBox()
 			Prompt(32 + 4, 'CONVERT_CDROM', 'DAA/GBI', 1)
@@ -2190,15 +2274,18 @@ Func extract($arctype, $arcdisp = 0, $additionalParameters = "", $returnSuccess 
 			$isofile = $filedir & '\' & $filename & '.iso'
 			_Run($daa & ' "' & $file & '" "' & $isofile & '"', $filedir)
 
-		Case $TYPE_DCP
+		Case "dcp"
 			HasPlugin($dcp)
 			_Run($dcp & ' "' & $file & '"', $outdir)
 
-		Case $TYPE_EI
+		Case "ei"
 			Warn_Execute($file & ' /batch /no-reg /no-postinstall /dest "' & $outdir & '"')
 			ShellExecuteWait($file, '/batch /no-reg /no-postinstall /dest "' & $outdir & '"', $outdir)
 
-		Case $TYPE_ENIGMA
+		Case "ethornell" ; Test
+			_Run($ethornell & ' "' & $file & '" "' & $outdir & '"', $outdir)
+
+		Case "enigma"
 			_Run($enigma & ' /nogui "' & $file & '"', $outdir, @SW_HIDE, True, False, False)
 
 			; Move files
@@ -2219,27 +2306,24 @@ Func extract($arctype, $arcdisp = 0, $additionalParameters = "", $returnSuccess 
 				$success = $RESULT_SUCCESS
 			EndIf
 
-		Case $TYPE_ETHORNELL ; Test
-			_Run($ethornell & ' "' & $file & '" "' & $outdir & '"', $outdir)
-
-		Case $TYPE_FEAD
+		Case "fead"
 			RunWait(Warn_Execute($file & ' /s -nos_ne -nos_o"' & $tempoutdir & '"'), $filedir)
 			FileSetAttrib($tempoutdir & '*', '-R', 1)
 			MoveFiles($tempoutdir, $outdir, False, "", True)
 			DirRemove($tempoutdir)
 
-		Case $TYPE_FREEARC
+		Case "freearc"
 			_Run($freearc & ' x -dp"' & $outdir & '" "' & $file & '"', $filedir, @SW_HIDE, True, True, False, False)
 
-		Case $TYPE_FSB
+		Case "fsb"
 			_Run($fsb & ' -d "' & $outdir & '" "' & $file & '"', $filedir, @SW_MINIMIZE, True, True, False)
 
-		Case $TYPE_GCF
+		Case "gcf"
 			Prompt(48 + 1, 'PACKAGE_EXPLORER', $file, 1)
 			Run($gcf & ' "' & $file & '"')
 			terminate($STATUS_SILENT, "", "")
 
-		Case $TYPE_GHOST
+		Case "ghost"
 			$ret = $outdir & "\" & $filename & ".exe"
 			Cout("Moving file to " & $ret)
 			FileMove($file, $ret)
@@ -2275,7 +2359,7 @@ Func extract($arctype, $arcdisp = 0, $additionalParameters = "", $returnSuccess 
 				$success = $RESULT_FAILED
 			EndIf
 
-		Case $TYPE_HLP
+		Case "hlp"
 			_Run($hlp & ' "' & $file & '"', $outdir)
 			If _DirGetSize($outdir, $initdirsize + 1) > $initdirsize Then
 				DirCreate($tempoutdir)
@@ -2284,15 +2368,15 @@ Func extract($arctype, $arcdisp = 0, $additionalParameters = "", $returnSuccess 
 				DirRemove($tempoutdir, 1)
 			EndIf
 
-		; Failsafe in case TrID misidentifies MS SFX hotfixes
-		Case $TYPE_HOTFIX
+		; failsafe in case TrID misidentifies MS SFX hotfixes
+		Case "hotfix"
 			Cout("Executing: " & Warn_Execute(Quote($file & '" /q /x:"' & $outdir)))
 			ShellExecuteWait($file, '/q /x:' & Quote($outdir), $outdir)
 
-		Case $TYPE_IMG ; Test
+		Case "img" ; Test
 			_Run($img & ' -x "' & $file & '"', $outdir, True, True, False)
 
-		Case $TYPE_INNO
+		Case "inno"
 			If StringInStr($filetype, "Reflexive Arcade", 0) Then
 				DirCreate($tempoutdir)
 				$ret = $tempoutdir & $filename & '.exe"'
@@ -2331,7 +2415,7 @@ Func extract($arctype, $arcdisp = 0, $additionalParameters = "", $returnSuccess 
 			Cleanup("install_script.iss")
 			Cleanup("setup.iss")
 
-		Case $TYPE_IS3ARC ; Test
+		Case "is3arc" ; Test
 			$aReturn = ['InstallShield 3.x ' & t('TERM_ARCHIVE'), t('METHOD_EXTRACTION_RADIO', 'STIX'), t('METHOD_EXTRACTION_RADIO', 'unshield')]
 			$choice = MethodSelect($aReturn, $arcdisp)
 
@@ -2341,7 +2425,7 @@ Func extract($arctype, $arcdisp = 0, $additionalParameters = "", $returnSuccess 
 				_Run($unshield & ' -d "' & $outdir & '" x "' & $file & '"', $outdir)
 			EndIf
 
-		Case $TYPE_ISCAB ; Test
+		Case "iscab" ; Test
 			Local $aReturn = ['InstallShield Cabinet ' & t('TERM_ARCHIVE'), t('METHOD_EXTRACTION_RADIO', 'is6comp'), t('METHOD_EXTRACTION_RADIO', 'is5comp'), t('METHOD_EXTRACTION_RADIO', 'iscab')]
 			$choice = MethodSelect($aReturn, $arcdisp)
 
@@ -2369,7 +2453,7 @@ Func extract($arctype, $arcdisp = 0, $additionalParameters = "", $returnSuccess 
 					FileDelete($outdir & "\files.ini")
 			EndSwitch
 
-		Case $TYPE_ISEXE
+		Case "isexe"
 			exescan($file, 'ext', 0)
 			If StringInStr($filetype, "3.x", 0) Then
 				; Extract 3.x SFX installer using stix
@@ -2451,7 +2535,7 @@ Func extract($arctype, $arcdisp = 0, $additionalParameters = "", $returnSuccess 
 				EndSwitch
 			EndIf
 
-		Case $TYPE_ISZ
+		Case "isz"
 			_DeleteTrayMessageBox()
 			Prompt(32 + 4, 'CONVERT_CDROM', 'ISZ', 1)
 			_CreateTrayMessageBox(t('EXTRACTING') & @CRLF & 'ISZ ' & t('TERM_IMAGE') & ' (' & t('TERM_STAGE') & ' 1)')
@@ -2462,23 +2546,16 @@ Func extract($arctype, $arcdisp = 0, $additionalParameters = "", $returnSuccess 
 			$isofile = $tempoutdir & $filename & '.iso'
 			FileMove($return, $file)
 
-		Case $TYPE_KGB
+		Case "kgb"
 			_Run($kgb & ' "' & $file & '"', $outdir, @SW_SHOW, True, False, False)
 
-		Case $TYPE_LZ
-			FileMove($file, $tempoutdir, 8)
-			$return = $tempoutdir & $filename & '.' & $fileext
-			_Run('lzip.exe' & ' -d -k -v -v "' & $return & '"', $tempoutdir, @SW_SHOW, True, True, False)
-			FileMove($return, $file)
-			MoveFiles($tempoutdir, $outdir, True, "", True)
-
-		Case $TYPE_LZO
+		Case "lzo"
 			_Run($lzo & ' -d -p"' & $outdir & '" "' & $file & '"', $filedir)
 
-		Case $TYPE_LZX
+		Case "lzx"
 			_Run($lzx & ' -x "' & $file & '"', $outdir)
 
-		Case $TYPE_MHT
+		Case "mht"
 			Local $aReturn = ['MHTML ' & t('TERM_ARCHIVE'), t('METHOD_EXTRACTION_RADIO', 'ExtractMHT'), t('METHOD_EXTRACTION_RADIO', 'MhtUnPack')]
 			$choice = MethodSelect($aReturn, $arcdisp)
 
@@ -2486,10 +2563,10 @@ Func extract($arctype, $arcdisp = 0, $additionalParameters = "", $returnSuccess 
 			If $choice == 1 Then
 				_Run($mht & ' "' & $file & '" "' & $outdir & '"', $outdir, @SW_MINIMIZE, False, False, False)
 			Else
-				extract($TYPE_QBMS, $arcdisp, $mht_plug)
+				extract('qbms', $arcdisp, $mht_plug)
 			EndIf
 
-		Case $TYPE_MOLE
+		Case "mole"
 			_Run($mole & ' /nogui "' & $file & '"', $outdir, @SW_HIDE, True, False, False)
 
 			; Move files
@@ -2509,7 +2586,7 @@ Func extract($arctype, $arcdisp = 0, $additionalParameters = "", $returnSuccess 
 				$success = $RESULT_SUCCESS
 			EndIf
 
-		Case $TYPE_MSI
+		Case "msi"
 			If HasNetFramework(4) Then
 				_Run($msi_lessmsi & ' x "' & $file & '" "' & $outdir & '\"', $outdir, @SW_SHOW, True, True, True)
 				MoveFiles($outdir & "\SourceDir", $outdir, False, '', True)
@@ -2527,7 +2604,7 @@ Func extract($arctype, $arcdisp = 0, $additionalParameters = "", $returnSuccess 
 						_Run($msi_msix & ' "' & $file & '" /out "' & $outdir & '" ' & $appendargs, $filedir)
 
 					Case 3 ; MSI Total Commander plugin
-						extract($TYPE_QBMS, $arcdisp, $msi_plug, True)
+						extract('qbms', $arcdisp, $msi_plug, True)
 
 						; Extract files from extracted CABs
 						$cabfiles = FileSearch($tempoutdir)
@@ -2550,18 +2627,18 @@ Func extract($arctype, $arcdisp = 0, $additionalParameters = "", $returnSuccess 
 				EndSwitch
 			EndIf
 
-		Case $TYPE_MSM ; Test
+		Case "msm" ; Test
 			; Due to the appendext argument, a definition file cannot be used here
 			_Run($msi_msix & ' "' & $file & '" /out "' & $outdir & '" ' & $appendext? '/ext': '', $filedir)
 
-		Case $TYPE_MSP
+		Case "msp"
 			Local $aReturn = ['MSP ' & t('TERM_PACKAGE'), t('METHOD_EXTRACTION_RADIO', 'MSI TC Packer'), t('METHOD_EXTRACTION_RADIO', 'MsiX'), t('METHOD_EXTRACTION_RADIO', '7-Zip')]
 			$choice = MethodSelect($aReturn, $arcdisp)
 
 			DirCreate($tempoutdir)
 			Switch $choice
 				Case 1 ; TC MSI
-					extract($TYPE_QBMS, $arcdisp, $msi_plug, True)
+					extract('qbms', $arcdisp, $msi_plug, True)
 				Case 2 ; MsiX
 					_Run($msi_msix & ' "' & $file & '" /out "' & $tempoutdir & '"', $filedir)
 				Case 3 ; 7-Zip
@@ -2584,10 +2661,10 @@ Func extract($arctype, $arcdisp = 0, $additionalParameters = "", $returnSuccess 
 			; Move files to output directory and remove tempdir
 			MoveFiles($tempoutdir, $outdir, False, "", True)
 
-		Case $TYPE_NBH ; Test
+		Case "nbh" ; Test
 			RunWait(_MakeCommand($nbh, True) & ' "' & $file & '"', $outdir)
 
-		Case $TYPE_NSIS
+		Case "NSIS"
 			; Rename duplicates and extract
 			_Run($7z & ' x -aou' & ' "' & $file & '"', $outdir)
 
@@ -2599,7 +2676,7 @@ Func extract($arctype, $arcdisp = 0, $additionalParameters = "", $returnSuccess 
 			; Determine if there are .bin files in filedir
 			checkBin()
 
-		Case $TYPE_PEA
+		Case "pea"
 			DirCreate($tempoutdir)
 			Local $pid = Run($pea & ' UNPEA "' & $file & '" "' & $tempoutdir & '" RESETDATE SETATTR EXTRACT2DIR INTERACTIVE', $filedir)
 			While ProcessExists($pid)
@@ -2609,7 +2686,7 @@ Func extract($arctype, $arcdisp = 0, $additionalParameters = "", $returnSuccess 
 			WEnd
 			MoveFiles($tempoutdir, $outdir, False, "", True)
 
-		Case $TYPE_QBMS
+		Case "qbms"
 			_Run($quickbms & ' "' & $bindir & $additionalParameters & '" "' & $file & '" "' & $outdir & '"', $outdir, @SW_MINIMIZE, True, False)
 			If FileExists($bindir & $bms) Then FileDelete($bindir & $bms)
 
@@ -2618,12 +2695,12 @@ Func extract($arctype, $arcdisp = 0, $additionalParameters = "", $returnSuccess 
 				Cleanup($aReturn)
 			EndIf
 
-		Case $TYPE_RAR
+		Case "rar"
 			Local $sPassword = _FindArchivePassword($rar & ' lt -p- "' & $file & '"', $rar & ' t -p"%PASSWORD%" "' & $file & '"', "encrypted", 0, 0)
 			_Run($rar & ' x ' & ($sPassword == 0? '"': '-p"' & $sPassword & '" "') & $file & '"', $outdir, @SW_SHOW)
 			If @extended Then terminate($STATUS_PASSWORD, $file, $arcdisp)
 
-		Case $TYPE_RGSS3
+		Case "rgss3"
 			HasPlugin($rgss3)
 			Run($rgss3, $outdir, @SW_HIDE)
 			Local $handle = WinWait("RPGMaker Decrypter", "", $Timeout)
@@ -2638,21 +2715,21 @@ Func extract($arctype, $arcdisp = 0, $additionalParameters = "", $returnSuccess 
 			If @error Then terminate($STATUS_FAILED, $file, $arcdisp)
 			$success = $RESULT_SUCCESS
 
-		Case $TYPE_ROBO
+		Case "robo"
 			RunWait(Warn_Execute($file & ' /unpack="' & $outdir & '"'), $filedir)
 
-		Case $TYPE_RPA
+		Case "rpa"
 			_Run($rpa & ' -m -v -p "' & $outdir & '" "' & $file & '"', @ScriptDir, True, True, True)
 
-		Case $TYPE_SFARK
+		Case "sfark"
 			_Run($sfark & ' "' & $file & '" "' & $outdir & '\' & $filename & '.sf2"', $filedir, @SW_SHOW)
 
-		Case $TYPE_SGB
+		Case "sgb"
 			$return = _Run($7z & ' x "' & $file & '"', $outdir, @SW_HIDE)
 			; Effect.sgr cannot be extracted by 7zip, that should not be considered failed extraction as all other files are OK
 			If StringInStr($return, "Headers Error : Effect.sgr") And StringInStr($return, "Sub items Errors: 1") Then $success = $RESULT_SUCCESS
 
-		Case $TYPE_SIM
+		Case "sim"
 			HasPlugin($sim)
 			_Run($sim & ' "' & $file & '" "' & $outdir & '"', $outdir, @SW_SHOW)
 
@@ -2694,24 +2771,24 @@ Func extract($arctype, $arcdisp = 0, $additionalParameters = "", $returnSuccess 
 			Local $aReturn = ["runtime.cab", "installer.config"]
 			Cleanup($aReturn)
 
-		Case $TYPE_SIT
+		Case "sit"
 			FileMove($file, $tempoutdir, 8)
 			$return = $tempoutdir & $filename & '.' & $fileext
 			_Run($sit & ' "' & $return & '"', $tempoutdir, @SW_SHOW, False, False, False)
 			FileMove($return, $file)
 			MoveFiles($tempoutdir, $outdir, True, "", True)
 
-		Case $TYPE_SQLITE
+		Case "sqlite"
 			$return = FetchStdout($sqlite & ' "' & $file & '" .dump ', $filedir, @SW_HIDE, 0, False)
 			$handle = FileOpen($outdir & '\' & $filename & '.sql', 8+2)
 			FileWrite($handle, $return)
 			FileClose($handle)
 
-		Case $TYPE_SUPERDAT
+		Case "superdat"
 			RunWait(Warn_Execute($file & ' /e "' & $outdir & '"'), $outdir)
 			_FileRead($filedir & '\SuperDAT.log', True)
 
-		Case $TYPE_SWF
+		Case "swf"
 			; Run swfextract to get list of contents
 			$return = StringSplit(FetchStdout($swf & ' "' & $file & '"', $filedir, @SW_HIDE), @CRLF)
 ;~ 			_ArrayDisplay($return)
@@ -2762,7 +2839,7 @@ Func extract($arctype, $arcdisp = 0, $additionalParameters = "", $returnSuccess 
 				EndIf
 			Next
 
-		Case $TYPE_SWFEXE
+		Case "swfexe"
 			$ret = $outdir & "\" & $filenamefull
 			Cout("Moving file to " & $ret)
 			FileMove($file, $ret)
@@ -2790,7 +2867,7 @@ Func extract($arctype, $arcdisp = 0, $additionalParameters = "", $returnSuccess 
 			Cout("Moving file back")
 			FileMove($ret, $filedir & "\")
 
-		Case $TYPE_TAR
+		Case "tar"
 			_Run($7z & ' x "' & $file & '"', $outdir)
 
 			If $fileext <> "tar" Then
@@ -2798,7 +2875,7 @@ Func extract($arctype, $arcdisp = 0, $additionalParameters = "", $returnSuccess 
 				FileDelete($outdir & '\' & $filename & '.tar')
 			EndIf
 
-		Case $TYPE_THINSTALL
+		Case "thinstall"
 			HasPlugin($thinstall)
 
 			$pid = Run(Warn_Execute($file), $filedir)
@@ -2821,7 +2898,7 @@ Func extract($arctype, $arcdisp = 0, $additionalParameters = "", $returnSuccess 
 			Sleep(1000)
 			ProcessClose($pid)
 
-		Case $TYPE_TTARCH ; Test
+		Case "ttarch" ; Test
 			; Get all supported games
 			$aReturn = _StringBetween(FetchStdout($ttarch, @ScriptDir, @SW_HIDE), "Games", "Examples")
 			If @error Then terminate($STATUS_FAILED, $file, $arcdisp)
@@ -2837,7 +2914,7 @@ Func extract($arctype, $arcdisp = 0, $additionalParameters = "", $returnSuccess 
 				$returnFail = True
 			EndIf
 
-		Case $TYPE_UHA
+		Case "uha"
 			_Run($uharc & ' x -t"' & $outdir & '" "' & $file & '"', $outdir)
 			If Not $success And _DirGetSize($outdir, $initdirsize + 1) <= $initdirsize Then
 				_Run($uharc04 & ' x -t"' & $outdir & '" "' & $file & '"', $outdir)
@@ -2845,7 +2922,7 @@ Func extract($arctype, $arcdisp = 0, $additionalParameters = "", $returnSuccess 
 					_Run($uharc02 & ' x -t' & FileGetShortName($outdir) & ' ' & FileGetShortName($file), $outdir)
 			EndIf
 
-		Case $TYPE_UIF
+		Case "uif"
 			_DeleteTrayMessageBox()
 			Prompt(32 + 4, 'CONVERT_CDROM', 'UIF', 1)
 
@@ -2856,16 +2933,16 @@ Func extract($arctype, $arcdisp = 0, $additionalParameters = "", $returnSuccess 
 			$isofile = $outdir & "\" & FileFindNextFile($handle)
 			FileClose($handle)
 
-		Case $TYPE_UNITY ; Test
+		Case "unity" ; Test
 			IsJavaInstalled()
 			_Run($unity & ' extract "' & $file & '"', $filedir, @SW_MINIMIZE, True, True, True, False)
 
-		Case $TYPE_UNREAL
+		Case "unreal"
 			HasPlugin($unreal)
 			; Currently extracts files from all packages in folder, not only the selected one!
 			_Run($unreal & ' -export -all -sounds -3rdparty -path="' & $filedir & '" -out="' & $outdir & '" *', $outdir, @SW_MINIMIZE, True, True, False)
 
-		Case $TYPE_VIDEO
+		Case "video"
 			HasFFMPEG()
 
 			; Collect information about number of tracks
@@ -2925,20 +3002,20 @@ Func extract($arctype, $arcdisp = 0, $additionalParameters = "", $returnSuccess 
 			Next
 			If $iVideo + $iAudio < 1 Then terminate($STATUS_NOTPACKED, $file, $arcdisp)
 
-		Case $TYPE_VIDEO_CONVERT
+		Case "video_convert"
 			HasFFMPEG()
 
 			_Run($ffmpeg & ' -i "' & $file & '" "' & ($iUnicodeMode? $sUnicodeName: $filename) & '.mp4"', $outdir, @SW_HIDE, True, True, False)
 
-		Case $TYPE_VSSFX
+		Case "vssfx"
 			FileMove($file, $outdir)
 			RunWait(Warn_Execute($outdir & '\' & $filename & '.' & $fileext & ' /extract'), $outdir)
 			FileMove($outdir & '\' & $filename & '.' & $fileext, $filedir)
 
-		Case $TYPE_VSSFX_PATH
+		Case "vssfxpath"
 			RunWait(Warn_Execute($file & ' /extract:"' & $outdir & '" /quiet'), $outdir)
 
-		Case $TYPE_WISE
+		Case "wise"
 			Local $aReturn = ['Wise ' & t('TERM_INSTALLER'), t('METHOD_UNPACKER_RADIO', 'E_Wise'), t('METHOD_UNPACKER_RADIO', 'WUN'), t('METHOD_SWITCH_RADIO', 'Wise Installer /x'), t('METHOD_EXTRACTION_RADIO', 'Wise MSI'), t('METHOD_EXTRACTION_RADIO', 'Unzip')]
 			$choice = MethodSelect($aReturn, $arcdisp)
 
@@ -3005,23 +3082,23 @@ Func extract($arctype, $arcdisp = 0, $additionalParameters = "", $returnSuccess 
 			; Append missing file extensions
 			If $appendext Then AppendExtensions($outdir)
 
-		Case $TYPE_WIX
+		Case "wix"
 			If Not HasNetFramework(4) Then terminate($STATUS_MISSINGEXE, $file, ".Net Framework 4")
 			_Run($wix & ' -x "' & $outdir & '" "' & $file & '"', $outdir, @SW_MINIMIZE, True, True, False)
 
-		Case $TYPE_ZIP
+		Case "zip"
 			Local $sPassword = _FindArchivePassword($7z & ' l -p -slt "' & $file & '"', $7z & ' t -p"%PASSWORD%" "' & $file & '"', "Encrypted = +", "Wrong password?", 0, "Everything is Ok")
 			_Run($7z & ' x ' & ($sPassword == 0? '"': '-p"' & $sPassword & '" "') & $file & '"', $outdir, @SW_HIDE, True, True, True, True)
 			If @extended Then terminate($STATUS_PASSWORD, $file, $arcdisp)
 			If $success <> $RESULT_SUCCESS Then _Run($zip & ' -x "' & $file & '"', $outdir, @SW_MINIMIZE, True, False)
 
-		Case $TYPE_ZOO
+		Case "zoo"
 			FileMove($file, $tempoutdir, 8)
 			_Run($zoo & ' -x ' & $filename & '.' & $fileext, $tempoutdir, @SW_HIDE)
 			FileMove($tempoutdir & $filename & '.' & $fileext, $file)
 			MoveFiles($tempoutdir, $outdir, False, "", True)
 
-		Case $TYPE_ZPAQ
+		Case "zpaq"
 			; ZPaq uses a different executable for Windows XP, so a definition file cannot be used
 			_Run($zpaq & ' x "' & $file & '" -to "' & $outdir & '"', $outdir, @SW_SHOW, True, True, False)
 
@@ -3062,7 +3139,7 @@ Func extract($arctype, $arcdisp = 0, $additionalParameters = "", $returnSuccess 
 	Switch $success
 		Case $RESULT_SUCCESS
 			; Special actions for 7zip extraction
-			If $arctype == $TYPE_7Z And ($fileext = "exe" Or StringInStr($filetype, "SFX")) Then
+			If $arctype == "7z" And ($fileext = "exe" Or StringInStr($filetype, "SFX")) Then
 				; Check if sfx archive and extract sfx script using 7ZSplit if possible
 				_CreateTrayMessageBox(t('SCANNING_FILE', "7z SFX Archives splitter"))
 				Cout("Trying to extract sfx script")
